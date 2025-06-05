@@ -1,7 +1,7 @@
+import inspect
 from typing import List, Dict
 from collections.abc import Callable
-import inspect
-
+from terminal import clear_terminal
 
 class PageManager: ...
 
@@ -42,6 +42,7 @@ class PageManager:
     def __init__(self):
         self.pages: Dict[str, Page] = {}
         self.next_page_id: str = ""
+        self.pages_accessed = []
 
     def to(self, page_id: str | Callable[[PageManager], None]):
         if isinstance(page_id, str):
@@ -81,14 +82,36 @@ class PageManager:
 
         return temp_function
 
+    def back(self):
+        self.to(self.pages_accessed.pop())
 
-manager = PageManager()
+    def init(self, init_on: str | Callable[[PageManager], None]):
+        self.to(init_on)
+        while True:
+            clear_terminal()
+            self.pages_accessed.append(self.next_page_id)
+            self.pages[self.next_page_id](self)
 
-manager.add_pages(TestPage())
+if __name__ == "__main__":
 
-# @manager.as_page()
-# def test(manager):
-#     print("Hello, World!")
+    manager = PageManager()
 
+    @manager.as_page()
+    def test1(manager):
+        print("You're at test1!")
+        input('Continue')
+        manager.to(test2)
+    
+    @manager.as_page()
+    def test2(manager):
+        print("You're at test2!")
+        input("Continue")
+        manager.to(test3)
+    
+    @manager.as_page()
+    def test3(manager):
+        print("You're at test3!")
+        input('Continue')
+        manager.to(test1)
 
-print(manager.pages)
+    manager.init(test1)
