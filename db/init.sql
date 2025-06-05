@@ -3,6 +3,12 @@ CREATE TABLE Event (
     description text NOT NULL
 );
 
+CREATE TABLE Tag (
+    ID_tag integer PRIMARY KEY,
+    tag_content text NOT NULL,
+    color integer NOT NULL
+)
+
 CREATE TABLE GeneralUser (
     ID_user integer PRIMARY KEY,
     username text NOT NULL,
@@ -11,6 +17,8 @@ CREATE TABLE GeneralUser (
     description text NOT NULL,
     permission_level integer NOT NULL,
     fake_username text
+    ID_tag integer,
+    FOREIGN KEY(ID_tag) REFERENCES Tag (ID_tag)
 );
 
 CREATE TABLE Ai (
