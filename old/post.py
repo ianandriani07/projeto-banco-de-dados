@@ -1,4 +1,4 @@
-from cards import Card
+from old.cards import Card
 
 class Post:
     def __init__(self, usuario, texto, data_postagem, likes=0, respostas=None):

@@ -1,5 +1,4 @@
-import textwrap
-from cards import Card
+from old.cards import Card
 
 
 class Perfil:
