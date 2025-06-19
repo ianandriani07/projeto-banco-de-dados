@@ -7,7 +7,7 @@ CREATE TABLE Tag (
     ID_tag integer PRIMARY KEY,
     tag_content text NOT NULL,
     color integer NOT NULL
-)
+);
 
 CREATE TABLE GeneralUser (
     ID_user integer PRIMARY KEY,
@@ -19,6 +19,14 @@ CREATE TABLE GeneralUser (
     fake_username text
     ID_tag integer,
     FOREIGN KEY(ID_tag) REFERENCES Tag (ID_tag)
+);
+
+CREATE TABLE AiVerified(
+    ID_user integer PRIMARY KEY,
+    last_profile_change timestamp NOT NULL,
+    last_post_time timestamp NOT NULL DEFAULT TO_TIMESTAMP(0),
+    last_ai_verification timestamp NOT NULL DEFAULT TO_TIMESTAMP(0),
+    FOREIGN KEY (ID_user)  REFERENCES GeneralUser (ID_user)
 );
 
 CREATE TABLE Ai (
