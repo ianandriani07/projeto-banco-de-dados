@@ -13,7 +13,7 @@ def gerar_usuario():
     permission_level = int(input("Digite o nível de permissão do usuário (1-5): "))
     fake_username = input("Digite o nome de usuário falso (opcional): ")
     senha = getpass.getpass("Digite a senha do usuário: ")
-    id_tag = int(input("Digite o ID da tag: "))
+    id_tag_input = input("Digite o ID da tag (opcional): ")
 
     with get_session() as session:
 
@@ -27,7 +27,7 @@ def gerar_usuario():
             description=description,
             permission_level=permission_level,
             fake_username=fake_username if fake_username else None,
-            id_tag=id_tag
+            id_tag = int(id_tag_input) if id_tag_input.strip() else None
         )
 
         try:
@@ -134,7 +134,7 @@ def gerar_post():
 
         post = Post(
             id_post=id_post,
-            text=text,
+            text_=text,
             time=datetime.now(),
             like_count=0,
             is_reply=is_reply,
@@ -161,7 +161,7 @@ def gerar_log():
         log = Logged(
             id_logged=id_logged,
             time=datetime.now(),
-            IPv4=ipv4,
+            ipv4=ipv4,
             page=page if page else None,
             id_user=id_user,
             event_type=event_type
