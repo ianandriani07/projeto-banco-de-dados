@@ -34,24 +34,24 @@ def menu_interativo():
         "⬇️  Navegue pelas opções:",
         choices=[
             questionary.Separator("📦  OPERAÇÕES PRINCIPAIS"),
-            Choice("1️⃣  CRUD Winx", value="1"),
+            Choice("1.  CRUD Winx", value="1"),
             questionary.Separator("🧪  TESTES"),
-            Choice("2️⃣  Criar todas as tabelas", value="2"),
-            Choice("3️⃣  Inserir dados de teste", value="3"),
-            Choice("4️⃣  Atualizar dados", value="4"),
-            Choice("5️⃣  Deletar dados", value="5"),
+            Choice("2.  Criar todas as tabelas", value="2"),
+            Choice("3.  Inserir dados de teste", value="3"),
+            Choice("4.  Atualizar dados", value="4"),
+            Choice("5.  Deletar dados", value="5"),
             questionary.Separator("📊  CONSULTAS"),
-            Choice("6️⃣  Consulta 01", value="6"),
-            Choice("7️⃣  Consulta 02", value="7"),
-            Choice("8️⃣  Consulta 03", value="8"),
-            Choice("9️⃣  Consultar tabelas individuais", value="9"),
+            Choice("6.  Consulta 01", value="6"),
+            Choice("7.  Consulta 02", value="7"),
+            Choice("8.  Consulta 03", value="8"),
+            Choice("9.  Consultar tabelas individuais", value="9"),
             questionary.Separator("🛠️  MANUTENÇÃO"),
-            Choice("🔟  Inserir registro", value="10"),
-            Choice("1️⃣1️⃣  Atualizar registro", value="11"),
-            Choice("1️⃣2️⃣  Deletar registro", value="12"),
-            Choice("1️⃣3️⃣  Limpar dados da Winx", value="13"),
+            Choice("10.  Inserir registro", value="10"),
+            Choice("11.  Atualizar registro", value="11"),
+            Choice("12.  Deletar registro", value="12"),
+            Choice("13.  Limpar dados da Winx", value="13"),
             questionary.Separator("🚪  SAIR"),
-            Choice("0️⃣  Desconectar do banco e sair", value="0")
+            Choice("0.  Desconectar do banco e sair", value="0")
         ]
     ).ask()
 
