@@ -3,6 +3,7 @@ from services.gerar_senha import gerar_senha
 from db.connection import get_session
 import getpass
 from utils.helpers import maior_id
+from sqlalchemy import insert, values
 
 
 def gerar_usuario():
@@ -179,13 +180,13 @@ def gerar_seguindo_seguidores():
     following = int(input("ID de quem está sendo seguido (following): "))
 
     with get_session() as session:
-        relacao = t_following(
+        smt = insert(t_following).values(
             follower=follower,
             following=following
         )
 
         try:
-            session.add(relacao)
+            session.execute(smt)
             session.commit()
             print("✅ Relação de seguir adicionada com sucesso!")
         except Exception as e:

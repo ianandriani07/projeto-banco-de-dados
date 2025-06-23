@@ -20,6 +20,7 @@ from services.gerar_graficos_consultas import *
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 def menu_interativo():
+    print("=================================================")
     print(r"""
     🧚‍♀️  ██     ██ ██ ███    ██ ██   ██ 
     🧚‍♀️  ██     ██ ██ ████   ██ ██  ██  
@@ -58,6 +59,7 @@ def menu_interativo():
 def executar_opcao(escolha):
     match escolha:
         case "1":
+            print("=================================================")
             dropar_tabelas()
             criar_tabelas()
             popular_tabelas_fake(
@@ -116,10 +118,11 @@ def executar_opcao(escolha):
             for linha in resultado2:
                 print(linha)
             print()
-
         case "2":
+            print("=================================================")
             criar_tabelas()
         case "3":
+            print("=================================================")
             popular_tabelas_fake(
                 num_users_gerais=100,
                 num_users_ia=50,
@@ -130,10 +133,13 @@ def executar_opcao(escolha):
                 num_reacoes=500
             )
         case "4":
+            print("=================================================")
             executar_updates()
         case "5":
+            print("=================================================")
             executar_deletes()
         case "6":
+            print("=================================================")
             print()
             print('Calcula a média de curtidas recebidas por post, agrupadas pela tag associada aos usuários.')
             print()
@@ -141,7 +147,9 @@ def executar_opcao(escolha):
             for linha in resultado:
                 print(linha)
             gerar_grafico_media_curtidas()
+            print()
         case "7":
+            print("=================================================")
             print()
             print(' Conta a quantidade de eventos realizados por usuários com ao menos 1 log registrado.')
             print()
@@ -157,7 +165,9 @@ def executar_opcao(escolha):
             for linha in resultado:
                 print(linha)
             gerar_grafico_likes_ia()
+            print()
         case "9":
+            print("=================================================")
             todas_tabelas = mostra_todas_tabelas()
             tabela_escolhida = questionary.select(
                 "📄 Escolha uma tabela para consultar:",
@@ -170,7 +180,7 @@ def executar_opcao(escolha):
                     print(linha)
 
         case "10":
-
+            print("=================================================")
             todas_tabelas = mostra_todas_tabelas()
             tabela_escolhida = questionary.select(
                 "📄 Escolha uma tabela para inserir:",
@@ -191,10 +201,12 @@ def executar_opcao(escolha):
                 gerar_log()
             elif tabela_escolhida == "following":
                 gerar_seguindo_seguidores()
-            else:
+            elif tabela_escolhida == 'reacted_to':
                 gerar_reacao()
-
+            else:
+                gerar_evento()
         case "11":
+            print("=================================================")
             todas_tabelas = mostra_todas_tabelas()
             tabela_escolhida = questionary.select(
                 "📄 Escolha uma tabela para consultar:",
@@ -211,7 +223,6 @@ def executar_opcao(escolha):
                     else:
                         print()
 
-                print(colunas[0])
                 nome_pk =colunas[0]['name']
 
                 coluna_escolhida = questionary.select(
@@ -236,14 +247,14 @@ def executar_opcao(escolha):
                     novo_valor = datetime.strptime(entrada, "%Y-%m-%d %H:%M:%S")
                 else:
                     print("❌ Tipo ainda não suportado para atualização.")
-                    return  # impede que atualizar_tabela seja chamado sem novo_valor
+                    return
 
                 valor_id = int(input("Digite o id do update: "))
 
                 atualizar_tabela(tabela_escolhida, nome_pk, valor_id, coluna_escolhida, novo_valor)
 
         case "12":
-
+            print("=================================================")
             todas_tabelas = mostra_todas_tabelas()
             tabela_escolhida = questionary.select(
                 "📄 Escolha uma tabela para deletar registro:",
@@ -258,6 +269,7 @@ def executar_opcao(escolha):
             deletar_por_id(tabela_escolhida, pk_coluna, valor_id)
 
         case "13":
+            print("=================================================")
             dropar_tabelas()
         case "0":
             print("👋 Encerrando o programa...")
