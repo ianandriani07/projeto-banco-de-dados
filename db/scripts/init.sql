@@ -16,7 +16,7 @@ CREATE TABLE GeneralUser (
     email text NOT NULL,
     description text NOT NULL,
     permission_level integer NOT NULL,
-    fake_username text
+    fake_username text,
     ID_tag integer,
     FOREIGN KEY(ID_tag) REFERENCES Tag (ID_tag)
 );
