@@ -55,7 +55,7 @@ def consultar_todos_registros_tabela(nome_tabela):
     metadata = MetaData()
 
     with get_session() as session:
-        tabela = Table("ai", metadata, autoload_with=session.bind)
+        tabela = Table(nome_tabela, metadata, autoload_with=session.bind)
 
         query = select(tabela)
         resultado = session.execute(query)
