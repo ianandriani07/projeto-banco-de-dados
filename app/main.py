@@ -50,7 +50,7 @@ def menu_interativo():
             Choice("10.  Inserir registro", value="10"),
             Choice("11.  Atualizar registro", value="11"),
             Choice("12.  Deletar registro", value="12"),
-            Choice("13.  Limpar dados da Winx", value="13"),
+            Choice("13.  Limpar banco de dados da Winx", value="13"),
             questionary.Separator("🚪  SAIR"),
             Choice("0.  Desconectar do banco e sair", value="0")
         ]
