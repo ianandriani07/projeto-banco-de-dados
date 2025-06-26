@@ -8,6 +8,9 @@ from services.consultar_registros import (
     contar_likes_feitos_pela_ia,
     consultar_todos_registros_tabela
 )
+from services.inserir_registros_qdrant import insert_user_info_in_qdrant
+from services.deletar_registros_qdrant import delete_qdrant_collections
+from services.consultar_usuarios_qdrant import get_similar_users
 from utils.helpers import mostra_todas_tabelas, estrutura_tabelas
 from questionary import Choice
 import questionary
@@ -51,6 +54,10 @@ def menu_interativo():
             Choice("11.  Atualizar registro", value="11"),
             Choice("12.  Deletar registro", value="12"),
             Choice("13.  Limpar banco de dados da Winx", value="13"),
+            questionary.Separator("✨  IA"),
+            Choice("14.  Inserir dados no Qdrant", value="14"),
+            Choice("15.  Deletar dados do Qdrant", value="15"),
+            Choice("16.  Consultar usuários recomendados", value="16"),
             questionary.Separator("🚪  SAIR"),
             Choice("0.  Desconectar do banco e sair", value="0")
         ]
@@ -271,6 +278,19 @@ def executar_opcao(escolha):
         case "13":
             print("=================================================")
             dropar_tabelas()
+        
+        case "14":
+            print("=================================================")
+            insert_user_info_in_qdrant()
+            
+        case "15":
+            print("=================================================")
+            delete_qdrant_collections()
+
+        case "16":
+            print("=================================================")
+            get_similar_users()
+
         case "0":
             print("👋 Encerrando o programa...")
             exit()
