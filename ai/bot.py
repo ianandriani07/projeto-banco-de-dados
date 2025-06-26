@@ -29,7 +29,7 @@ class UserID:
 
 class Bot:
 
-    def __init__(self, host: str, default_model: str = "nomic-embed-text"):
+    def __init__(self, host: str, default_model: str = "bge-m3"):
         self.client = ollama.Client(host)
         self.default_model = default_model
 
@@ -122,7 +122,6 @@ class VecDB:
         )
 
     def save_embedding(self, payload: UserID) -> int:
-        # Gera o embedding usando o Ollama com o modelo nomic-embed-text
         embedding = self.embedding_bot.embed(str(payload))
 
         # Cria a coleção se ainda não existir
