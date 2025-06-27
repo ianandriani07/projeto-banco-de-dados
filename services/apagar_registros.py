@@ -37,14 +37,19 @@ def executar_deletes():
         print("🧹 Dados deletados com sucesso.")
 
 def deletar_por_id(nome_tabela, nome_coluna_id, valor_id):
-    metadata = MetaData()
 
-    with get_session() as session:
-        tabela = Table(nome_tabela.lower(), metadata, autoload_with=session.bind)
+    try:
+        metadata = MetaData()
 
-        stmt = delete(tabela).where(tabela.c[nome_coluna_id] == valor_id)
+        with get_session() as session:
+            tabela = Table(nome_tabela.lower(), metadata, autoload_with=session.bind)
 
-        resultado = session.execute(stmt)
-        session.commit()
+            stmt = delete(tabela).where(tabela.c[nome_coluna_id] == valor_id)
 
-        print(f"{resultado.rowcount} registro(s) deletado(s) da tabela '{nome_tabela}'")
+            resultado = session.execute(stmt)
+            session.commit()
+
+            print(f"{resultado.rowcount} registro(s) deletado(s) da tabela '{nome_tabela}'")
+
+    except Exception as e:
+        print(f"Erro: {e}")

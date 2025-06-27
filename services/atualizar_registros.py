@@ -55,18 +55,22 @@ def executar_updates():
 
 def atualizar_tabela(nome_tabela, coluna_filtro, valor_filtro, coluna_alvo, novo_valor):
 
-    metadata = MetaData()
+    try:
+        metadata = MetaData()
 
-    with get_session() as session:
-        tabela = Table(nome_tabela.lower(), metadata, autoload_with=session.bind)
+        with get_session() as session:
+            tabela = Table(nome_tabela.lower(), metadata, autoload_with=session.bind)
 
-        stmt = (
-            update(tabela)
-            .where(tabela.c[coluna_filtro] == valor_filtro)
-            .values({coluna_alvo: novo_valor})
-        )
+            stmt = (
+                update(tabela)
+                .where(tabela.c[coluna_filtro] == valor_filtro)
+                .values({coluna_alvo: novo_valor})
+            )
 
-        resultado = session.execute(stmt)
-        session.commit()
+            resultado = session.execute(stmt)
+            session.commit()
 
-        print(f"✅ {resultado.rowcount} linha(s) atualizada(s) em '{nome_tabela}'")
+            print(f"✅ {resultado.rowcount} linha(s) atualizada(s) em '{nome_tabela}'")
+
+    except Exception as e:
+        print(f"Erro: {e}")
