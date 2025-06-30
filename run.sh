@@ -7,6 +7,10 @@ else
     echo "Virtual environment already exists."
 fi
 
+# Start Docker containers in detached mode (non-blocking)
+echo "Starting Docker containers with docker compose in detached mode..."
+docker compose up -d
+
 source venv/bin/activate
 echo "Activated virtual environment."
 

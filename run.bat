@@ -9,6 +9,10 @@ IF NOT EXIST "venv" (
     echo Virtual environment already exists.
 )
 
+REM Start Docker containers in detached mode (non-blocking)
+echo Starting Docker containers with docker compose in detached mode...
+docker compose up -d
+
 REM Activate virtual environment
 CALL venv\Scripts\activate.bat
 echo Activated virtual environment.
